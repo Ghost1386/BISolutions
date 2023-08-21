@@ -20,39 +20,60 @@ public class TaskController : ControllerBase
     [HttpPost("getSum")]
     public IActionResult GetSum(GetSumDto getSumDto)
     {
-        if (ModelState.IsValid)
+        try
         {
-            var jsonSum = _logicService.GetSumOddNumber(getSumDto.Numbers);
+            if (ModelState.IsValid)
+            {
+                var jsonSum = _logicService.GetSumOddNumber(getSumDto.Numbers);
         
-            return Ok(_displayService.DisplayResultFor_GetSumOddNumber(jsonSum));
+                return Ok(_displayService.DisplayResultFor_GetSumOddNumber(jsonSum));
+            }
+            
+            return BadRequest();
         }
-
-        return BadRequest();
+        catch (Exception)
+        {
+            return BadRequest();
+        }
     }
     
     [HttpPost("isPalindrome")]
     public IActionResult IsPalindrome(IsStringPalindromeDto isStringPalindromeDto)
     {
-        if (ModelState.IsValid)
+        try
         {
-            var jsonIsPalindrome = _logicService.IsStringPalindrome(isStringPalindromeDto.Str);
+            if (ModelState.IsValid)
+            {
+                var jsonIsPalindrome = _logicService.IsStringPalindrome(isStringPalindromeDto.Str);
         
-            return Ok(_displayService.DisplayResultFor_IsStringPalindrome(jsonIsPalindrome));
+                return Ok(_displayService.DisplayResultFor_IsStringPalindrome(jsonIsPalindrome));
+            }
+            
+            return BadRequest();
         }
-
-        return BadRequest();
+        catch (Exception)
+        {
+            return BadRequest();
+        }
     }
     
     [HttpPost("sortList")]
     public IActionResult SortList(SortListDto sortListDto)
     {
-        if (ModelState.IsValid)
+        try
         {
-            var jsonSortedList = _logicService.SortList(sortListDto.list);
+            if (ModelState.IsValid)
+            {
+                var jsonSortedList = _logicService.SortList(sortListDto.list);
 
-            return Ok(_displayService.DisplayResultFor_SortList(jsonSortedList));
-        }
+                return Ok(_displayService.DisplayResultFor_SortList(jsonSortedList));
+            }
         
-        return BadRequest();
+            return BadRequest();
+        }
+        catch (Exception)
+        {
+            return BadRequest();
+        }
     }
 }
